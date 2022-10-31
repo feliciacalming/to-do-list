@@ -1,0 +1,20 @@
+html, body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-left: 20px;
+}
+
+.wrapper {
+    background-color: lightskyblue;
+    width: 100vw;
+    height: 100vh;
+    font-family: futura;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+}
