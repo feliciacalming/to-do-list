@@ -1,20 +1,64 @@
-html, body, ul {
+html, body, ul, h1 {
     margin: 0;
     padding: 0;
-}
-
-li {
-    margin-left: 20px;
-}
-
-.wrapper {
-    background-color: lightskyblue;
-    width: 100vw;
-    height: 100vh;
     font-family: futura;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: lightskyblue;
+}
+
+#user-input {
+    width: 30vw;
+    display: inline;
+    // margin-left: auto;
+    // margin-right: auto;
+    
+}
+
+#add-task {
+    width: 50px;
+    display: inline;
+
+}
+
+#uncompleted-tasks {
+    background-color: lightskyblue;
+    width: 80vw;
+}
+
+.uncompleted {
+    color: black;
+    text-decoration: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: rgb(124, 124, 124);
+}
+
+.container {
+    width: 100vw;
+    height: 50vh;
 }
 
 ul {
     display: flex;
     flex-direction: column;
+}
+
+li {
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
