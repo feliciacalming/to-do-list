@@ -17,18 +17,16 @@ listContainer.classList.add("list-container");
 inputButton.innerHTML = "+";
 inputButton.addEventListener("click", addTodo);
 sortButton.addEventListener("click", sortAlphabetical);
+
+//Knapp med eventlyssnare för att rensa listan. Nu laddas min hårdkodade lista
+//in när man lägger till en ny to-do efter att ha rensat listan, vilket inte är
+//meningen men det får jag fortsätta fila på efter inlämningen!
+
 clearButton.addEventListener("click", () => {
   localStorage.clear();
   list.innerHTML = "";
   localStorage.setItem("to-do", JSON.stringify(toDoList));
 });
-
-// class ToDo {
-//   constructor(task, completed) {
-//     this.task = task;
-//     this.completed = completed;
-//   }
-// }
 
 let toDoList = [
   new ToDo("Gå till systemet", false),
@@ -48,12 +46,14 @@ window.addEventListener("load", () => {
   createToDoList();
 });
 
-// window.addEventListener("load", () => {
-//   toDoList = JSON.parse(localStorage.getItem("to-do")) || [];
-//   testFunction();
-// });
+window.onload = setCaret();
 
-// testFunction();
+//funktion som sätter markören i input-textrutan
+function setCaret() {
+  userInput.select();
+  userInput.setSelectionRange(userInput.value.length, userInput.value.length);
+}
+
 console.log(toDoList);
 
 //funktion för att lägga till ny to do
@@ -66,12 +66,17 @@ function addTodo() {
   createToDoList(newToDo);
 }
 
-//funktion som skapar en synlig lista för mina
+//eventlyssnare för att lägga till funktion genom att trycka "enter"
+userInput.addEventListener("keypress", () => {
+  if (event.key === "Enter") {
+    addTodo();
+  }
+});
+
+//funktion som skapar en synlig lista
 function createToDoList() {
-  // listContainer.innerHTML = "";
   list.innerHTML = "";
   for (let i = 0; i < toDoList.length; i++) {
-    //PROVAR ÄNDRA OM
     const itemContainer = document.createElement("span");
     const task = document.createElement("li");
     const checkbox = document.createElement("input");
@@ -83,7 +88,8 @@ function createToDoList() {
     checkbox.classList.add("list__checkbox");
     deleteButton.classList.add("list__deletebutton");
 
-    task.innerHTML = toDoList[i].task; // funkar inte att skriva + checkbox, måste göra myTask.appendChild(checkbox)!
+    task.innerHTML = toDoList[i].task;
+    // funkar inte att skriva + checkbox, måste göra myTask.appendChild(checkbox)!
 
     //eventlyssnare för att hantera när checkboxen är iklickad
     checkbox.type = "checkbox";
@@ -91,10 +97,7 @@ function createToDoList() {
     checkbox.addEventListener("click", () => {
       if (checkbox.checked === true) {
         toDoList[i].completed = true;
-        //försöker få de klara att hamna längst ner i listan
-
         task.classList.add("list__item--completed");
-        // task.appendChild(checkbox);
       } else {
         toDoList[i].completed = false;
         task.classList.remove("list__item--completed");
@@ -110,32 +113,10 @@ function createToDoList() {
       createToDoList();
     });
 
-    // checkbox.addEventListener("click", () => {
-    //   handleClick(checkbox[i]);
-    // });
-    // function handleClick(checkbox) {
-    //   // Varför e den grå? Vad försöker jag göra här?
-    //   console.log("Du klickade på", toDoList[i]);
-    // }
-
-    //det här fick soptunnan att ligga längst bort me nförlorade funktionen delete
-    // list.appendChild(itemContainer);
-    // itemContainer.appendChild(task);
-    // task.appendChild(checkbox);
-    // itemContainer.appendChild(deleteButton);
-    // listContainer.appendChild(itemContainer);
-
-    // SENASTE ÄNDRINGEN:
     task.appendChild(checkbox);
     task.appendChild(deleteButton);
     list.appendChild(task);
     listContainer.append(list);
-
-    //sparar mitt gamla:
-    // task.appendChild(checkbox);
-    // task.appendChild(deleteButton);
-    // list.appendChild(task);
-    // listContainer.append(list);
   }
 }
 
@@ -153,7 +134,6 @@ function sortAlphabetical() {
       return 1;
     }
 
-    // names must be equal
     return 0;
   });
 

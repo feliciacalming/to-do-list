@@ -1,9 +1,10 @@
 @use "mixins" as mix;
+@use "variables" as var;
 
 html, body, ul, h1 {
     margin: 0;
     padding: 0;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "Garamond", Helvetica, Arial, sans-serif;
     font-size: 20px;
     background-color: rgb(240, 241, 248);
 }
@@ -29,6 +30,7 @@ body {
     width: 80vw; 
     margin-bottom: 5%;
 
+
     @include mix.desktop {
         width: 50vw;
     }
@@ -37,29 +39,33 @@ body {
         width: 80%;
         height: 10vw;
         // margin-bottom: 10px;
-        border: 1px solid blue;
+        border: 1px solid var.$font-primary;;
         border-radius: 5px;
+        padding-left: 10px;
+        text-align: center;
+
+        &:focus {
+            outline: none;
+        }
 
         @include mix.desktop {
             width: 40vw;
-            height: 3vw;
-            padding-left: 10px;
-            text-align: center;
+            height: 30px;
         }
     }
 
     &__button {
-        // margin-bottom: 20px;
-        background-color: blue;
+        @include mix.flexCenter;
+        background-color: var.$font-primary;;
         color: white;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border: none;
         border-radius: 5px;
 
         @include mix.desktop {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
         }
     }
 }
@@ -69,13 +75,86 @@ body {
     height: min-content;
     margin-top: 20px;
     margin-bottom: 20px;
-    // padding: 5% 2% 5% 2%;
-    // background-color: rgba(249, 126, 132, 0.5);
     border-radius: 5px;
 
     @include mix.desktop {
         width: 50vw;
     }
+}
+
+
+.list {
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+    
+    
+    &__item {
+        position: relative;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 5px;
+        margin-bottom: 5px;
+        list-style: none;
+        background-color: var.$font-secondary;
+        border: 1px solid rgb(164, 164, 250);
+        border-radius: 10px;
+        font-size: 17px;
+        letter-spacing: 1px;
+        color: var.$font-primary;
+        
+        
+        &--completed {
+            text-decoration: line-through;
+            color: rgb(194, 137, 172);
+            
+        }
+        
+        @include mix.desktop {
+            font-size: 17px;
+        }
+    }
+    
+    &__checkbox {
+        width: 15px;
+        height: 15px;
+        margin-right: 3%;
+        padding: 0;
+        // margin-right: 30px;
+        
+        @include mix.desktop {
+            width: 20px;
+            height: 20px;
+        }
+        
+    }
+    
+    &__deletebutton {
+        font-size: 20px;
+        color: red;
+        border: none;
+        position: absolute;
+        margin-left: 90%;
+        background: transparent;
+        
+        @include mix.desktop {
+            margin-left: 93%;
+        }
+    }
+}
+
+
+h1 {
+    color: var.$font-primary;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .btn {
@@ -95,78 +174,6 @@ body {
     @include mix.desktop {
         font-size: 13px;
     }
-}
-
-.list {
-    display: flex;
-    flex-direction: column;
-    margin: 2px;
-    
-    
-    &__item {
-        position: relative;
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-        align-items: center;
-        padding: 5px;
-        margin-bottom: 5px;
-        list-style: none;
-        background-color: rgba(250, 178, 209, 0.8);
-        border: 1px solid rgb(164, 164, 250);
-        border-radius: 10px;
-        font-size: 17px;
-        color: rgb(19, 19, 199);
-
-        
-        &--completed {
-            text-decoration: line-through;
-            color: green;
-        }
-
-        @include mix.desktop {
-            font-size: 17px;
-        }
-    }
-    
-    &__checkbox {
-        width: 15px;
-        height: 15px;
-        margin-right: 3%;
-        padding: 0;
-        // margin-right: 30px;
-
-        @include mix.desktop {
-            width: 20px;
-            height: 20px;
-        }
-        
-    }
-    
-    &__deletebutton {
-        font-size: 20px;
-        color: red;
-        border: none;
-        position: absolute;
-        margin-left: 90%;
-        background: transparent;
-
-        @include mix.desktop {
-            margin-left: 93%;
-        }
-    }
-}
-
-
-h1 {
-    color: blue;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    margin-bottom: 20px;
 }
 
 #clear-btn {
