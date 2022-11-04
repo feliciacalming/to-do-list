@@ -1,3 +1,5 @@
+import { ToDo } from "./models/todo";
+
 //globala variabler
 const userInput = document.getElementById("user-input");
 const inputContainer = document.getElementById("input-container");
@@ -14,12 +16,12 @@ inputButton.innerHTML = "lägg till to do!";
 inputButton.addEventListener("click", addTodo);
 sortButton.addEventListener("click", sortAlphabetical);
 
-class ToDo {
-  constructor(task, completed) {
-    this.task = task;
-    this.completed = completed;
-  }
-}
+// class ToDo {
+//   constructor(task, completed) {
+//     this.task = task;
+//     this.completed = completed;
+//   }
+// }
 
 let toDoList = [
   new ToDo("gå till systemet", false),
